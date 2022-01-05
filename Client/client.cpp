@@ -3,10 +3,21 @@
 int main(){
     bool isRunning = true;
     int choice;
+    pthread_t clientThread;
+    string bookTitle;
 
     while(isRunning){
         ShowMenu();
         choice = GetUserInput();
+        switch(choice){
+            case 0:
+                isRunning = false;
+                cout << "Program ended. Please, wait..." << endl;
+                break;
+
+            case 1:
+                bookTitle = GetTitle();
+        }
     }
 
     return 0;
@@ -44,3 +55,29 @@ int GetUserInput(){
     }
     return input;
 }
+
+/**
+ * @brief Get title from input.
+ * 
+ * @return string Server-ready string
+ */
+string GetTitle(){
+    string rawInput, formattedInput;
+    cout << "Enter title: ";
+    cin.ignore();
+    getline(cin, rawInput);
+    formattedInput = StringFormatter(rawInput);
+    return formattedInput;
+}
+
+/**
+ * @brief Format inputted string (replacing withespaces to underscores).
+ * 
+ * @param rawString non-formatted string
+ * @return string formatted and validated string
+ */
+string StringFormatter(string rawString){
+    //TODO: replace withespaces with underscores. Useful for client-server communication
+}
+
+
